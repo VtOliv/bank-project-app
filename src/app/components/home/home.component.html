@@ -5,9 +5,38 @@
         </ng-template>
         <ng-template pTemplate="end">
 
-            <span>Texto teste</span>
+            <span>Bem vindo(a), {{item.dono}}</span>
         </ng-template>
-
-
     </p-menubar>
+</div>
+
+<div class="screen">
+    <div class="buttons">
+        <p-card>
+            <h2 class="m-0">
+                Sacar
+            </h2>
+        </p-card>
+        <p-card>
+            <h2 class="m-0">
+                Depositar
+            </h2>
+        </p-card>
+        <p-card>
+            <h2 class="m-0">
+                Pagar conta
+            </h2>
+        </p-card>
+        <p-card>
+            <h2 class="m-0">
+                Alterar Info
+            </h2>
+        </p-card>
+    </div>
+    <p-card header="Saldo">
+        <h1 class="m-0">
+            {{saldo}}
+        </h1>
+    </p-card>
+
 </div>

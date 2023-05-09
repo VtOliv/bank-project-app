@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { ApiService } from 'src/app/services/api.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +9,20 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
+  @Input() id: any;
   items!: MenuItem[];
+  item: any;
+  test: any;
+  saldo!: Number;
 
-  constructor(private requisicoes: ApiService) {}
-
-  
+  constructor(
+    private requisicoes: ApiService,
+    private router: Router,
+    private activeRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.items = [
-      {
-        label: 'Login',
-        icon: PrimeIcons.USER,
-        routerLink: ['/login'],
-      },
       {
         label: 'Sacar',
         icon: PrimeIcons.MONEY_BILL,
@@ -36,8 +37,21 @@ export class HomeComponent implements OnInit {
       },
       {
         label: 'Fechar conta',
-        icon: PrimeIcons.POWER_OFF,
+        icon: PrimeIcons.EJECT,
       },
+      {
+        label: 'Sair',
+        icon: PrimeIcons.POWER_OFF,
+        routerLink: ['/login']
+      }
     ];
+    this.activeRoute.params.subscribe((d) => (this.test = d));
+
+    this.requisicoes.buscarConta(this.test.numconta).subscribe((data) => {
+      this.item = data;
+      this.saldo = data.saldo.toFixed(2)
+      console.log(this.item);
+      console.log(this.saldo)
+    });
   }
 }

@@ -12,6 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { MenubarModule } from 'primeng/menubar';
 import { LoginComponent } from './components/login/login.component';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LoginComponent } from './components/login/login.component';
     ButtonModule,
     InputTextModule,
     KeyFilterModule,
-    MenubarModule
+    MenubarModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

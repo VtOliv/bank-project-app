@@ -1,3 +1,25 @@
 .p-float-label{
     margin: 30px;
 }
+
+.screen{
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.buttons{
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.screen p-card{
+    width: 40%;
+}
+
+.screen p-card h1{
+    font-size: 100px;
+}

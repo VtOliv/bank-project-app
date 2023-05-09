@@ -10,8 +10,8 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
 
-  buscarConta() {
-    let url = this.http.get<any>(`http://localhost:8097/buscar`);
+  buscarConta(numconta: Number) {
+    let url = this.http.get<any>(`http://localhost:8097/buscar?numconta=${numconta}`);
     return url.pipe(
       map(
         data => data
