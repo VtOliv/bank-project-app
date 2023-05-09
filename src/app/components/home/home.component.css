@@ -1,14 +1,14 @@
-.p-float-label{
+.p-float-label {
     margin: 30px;
 }
 
-.screen{
+.screen {
     display: flex;
     justify-content: flex-end;
     padding: 10px;
 }
 
-.buttons{
+.buttons {
     width: 60%;
     display: flex;
     justify-content: space-around;
@@ -16,10 +16,20 @@
     flex-wrap: wrap;
 }
 
-.screen p-card{
+.screen p-card {
     width: 40%;
 }
 
-.screen p-card h1{
+.screen p-card h1 {
     font-size: 100px;
 }
+
+.saque {
+    width: 50%;
+}
+
+.p-float-label{
+    display: flex;
+    width: 70%;
+}
+
