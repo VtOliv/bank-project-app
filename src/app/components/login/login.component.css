@@ -55,6 +55,13 @@ mat-form-field {
     margin-top: 5px;
 }
 
+.criar{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+    padding: 10px;
+}
+
 @-webkit-keyframes leftSide {
     0% {
         background: #360ba3;

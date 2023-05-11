@@ -16,8 +16,33 @@
                 <label htmlFor="username">Digite sua conta</label>
             </span>
 
-            <p-button class="loginBtn" (click)="buscarConta()" label="Login" styleClass="p-button-secondary"></p-button>
+            <p-button class="loginBtn" (click)="buscarConta()" label="Login"
+                styleClass="p-button-secondary"></p-button>
+
+            <span>Não possui conta ? <strong>Crie agora !</strong></span>
+            <p-button label="Clique aqui para criar"
+                styleClass="p-button-secondary p-button-text"
+                (click)="abrirCriar()"></p-button>
         </div>
 
+        <div class="dialogPgto flex justify-content-center">
+            <p-dialog header="Pagamentos" [(visible)]="criar" [style]="{width:
+                '60%' ,
+                height: '30%'}">
+                <p>Informe os campos a seguir para criar sua conta :</p>
+                <div class="criar">
+                    <span class="p-float-label">
+                        <input pInputText id="username" [(ngModel)]="dono" />
+                        <label htmlFor="username">Dono</label>
+                    </span>
+
+                    <p-selectButton [options]="stateOptions" [(ngModel)]="tipo" optionLabel="label" optionValue="value"></p-selectButton>
+
+                    <p-button label="Criar conta"
+                        styleClass="p-button-secondary" (click)="criarConta()"></p-button>
+                </div>
+
+            </p-dialog>
+        </div>
     </div>
 </div>

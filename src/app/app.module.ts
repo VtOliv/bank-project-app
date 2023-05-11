@@ -17,12 +17,19 @@ import { LoginComponent } from './components/login/login.component';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { TabViewModule } from 'primeng/tabview';
+import { RippleModule } from 'primeng/ripple';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { ExtratoComponent } from './components/extrato/extrato.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ExtratoComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +45,12 @@ import { ToastModule } from 'primeng/toast';
     CardModule,
     DialogModule,
     ToastModule,
-    InputNumberModule
+    InputNumberModule,
+    RadioButtonModule,
+    TabViewModule,
+    RippleModule,
+    SelectButtonModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

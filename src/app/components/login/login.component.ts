@@ -13,9 +13,17 @@ export class LoginComponent implements OnInit {
 
   value: any
   back: any
+  criar = false
+  tipo: any
+  dono: any
+  stateOptions: any[] = [{label: 'Conta Corrente', value: 2}, {label: 'Conta Poupança', value: 1}];
 
   ngOnInit() {
     
+  }
+
+  abrirCriar() {
+    this.criar = true;
   }
 
   abrirHome(id: any){
@@ -25,10 +33,15 @@ export class LoginComponent implements OnInit {
   buscarConta(){
     this.requisicoes.buscarConta(this.value).subscribe(data => {
       this.back = data 
-      console.log(data)
       this.abrirHome(data.numConta)
     })
   }
 
+  criarConta(){
+    this.requisicoes.criar(this.tipo, this.dono).subscribe(data => {
+      this.back = data 
+      this.abrirHome(data.numConta)
+    })
+  }
 
 }

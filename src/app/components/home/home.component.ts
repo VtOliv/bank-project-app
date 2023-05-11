@@ -3,6 +3,7 @@ import { MenuItem, PrimeIcons } from 'primeng/api';
 import { ApiService } from 'src/app/services/api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { conta } from 'src/app/models/conta';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,17 @@ import { MessageService } from 'primeng/api';
 export class HomeComponent implements OnInit {
   @Input() id: any;
   items!: MenuItem[];
-  item: any;
+  conta!: conta;
+  tipo!: any;
   test: any;
-  saldo!: Number;
-  nome!: any;
+  saldo!: any;
+  dono!: any;
   value!: Number;
+  numconta: any;
+  altTipo!: any;
+  altDono!: any;
+
+  // Variaveis modais
   saque = false;
   deposito = false;
   pgto = false;
@@ -34,34 +41,38 @@ export class HomeComponent implements OnInit {
     this.activeRoute.params.subscribe((d) => (this.test = d));
 
     this.requisicoes.buscarConta(this.test.numconta).subscribe((data) => {
-      this.item = data;
+      this.conta = data;
+      this.tipo = data.tipo;
       this.saldo = data.saldo.toFixed(2);
-      this.nome = data.dono;
-      sessionStorage.setItem('numconta', data.numConta);
+      this.dono = data.dono;
+      this.numconta = data.numConta
+      sessionStorage.setItem('numconta', this.numconta);
+
+      console.log(this.test.numconta)
     });
 
     this.items = [
       {
-        label: 'Sacar',
-        icon: PrimeIcons.MONEY_BILL,
+        label: 'Extrato',
+        icon: PrimeIcons.CHART_LINE,
+        command: () => this.irParaExtrato()
       },
       {
-        label: 'Depositar',
-        icon: PrimeIcons.MONEY_BILL,
-      },
-      {
-        label: 'Pagar conta',
-        icon: PrimeIcons.CREDIT_CARD,
-      },
-      {
-        label: 'Fechar conta',
-        icon: PrimeIcons.EJECT,
-      },
-      {
-        label: 'Sair',
-        icon: PrimeIcons.POWER_OFF,
-        routerLink: ['/login'],
-      },
+        label: 'Opções',
+        icon: PrimeIcons.ALIGN_JUSTIFY,
+        items: [
+          {
+            label: 'Fechar conta',
+            icon: PrimeIcons.POWER_OFF,
+          },
+          {
+            label: 'Sair',
+            icon: PrimeIcons.SIGN_OUT,
+            routerLink: ['/login'],
+          }
+        ]
+      }
+
     ];
   }
 
@@ -78,23 +89,73 @@ export class HomeComponent implements OnInit {
     this.alterar = true;
   }
 
+  irParaExtrato(){
+    this.router.navigate(['/extrato/' + this.numconta]);
+  }
+
+  show(message: string, title: string, color: string) {
+    this.messageService.add({
+      key: 'tc',
+      severity: color,
+      summary: title,
+      detail: message,
+    });
+  }
+
   sacar() {
     var numconta = sessionStorage.getItem('numconta');
 
     this.requisicoes.saque(numconta, this.value).subscribe((data) => {
-      this.messageService.add({
-        key: 'bc',
-        severity: 'success',
-        summary: 'Sucesso',
-        detail: 'Saque efetuado',
-        life: 400000,
-      });
+      this.show("Saque efetuado com sucesso!", "Sucesso", "success")
       setTimeout(() => {
         (this.saque = false), 400000;
       });
+      this.conta.saldo = data.saldo.toFixed(2);
       this.saldo = data.saldo.toFixed(2);
+      this.value = 0.0;
     });
   }
 
-  ngOnDestroy() {}
+  depositar() {
+    var numconta = sessionStorage.getItem('numconta');
+
+    this.requisicoes.depositar(numconta, this.value).subscribe((data) => {
+      this.show("Depósito efetuado com sucesso!", "Sucesso", "success")
+      setTimeout(() => {
+        (this.deposito = false), 400000;
+      });
+      this.conta.saldo = data.saldo.toFixed(2);
+      this.saldo = data.saldo.toFixed(2);
+      this.value = 0.0;
+    });
+  }
+
+  pagarConta() {
+    var numconta = sessionStorage.getItem('numconta');
+
+    this.requisicoes.pagarConta(numconta, this.value).subscribe((data) => {
+      this.show("Pagamento efetuado com sucesso!", "Sucesso", "success")
+      setTimeout(() => {
+        (this.pgto = false), 400000;
+      });
+      this.conta.saldo = data.saldo.toFixed(2);
+      this.saldo = data.saldo.toFixed(2);
+      this.value = 0.0;
+    });
+  }
+
+  alterarDados(){
+    var numconta = sessionStorage.getItem('numconta');
+
+    this.requisicoes.alterar(numconta, this.altTipo, this.altDono).subscribe((data) => {
+      this.show("Alteração efetuada com sucesso!", "Sucesso", "success")
+      setTimeout(() => {
+        (this.alterar = false), 400000;
+      });
+      this.conta = data;
+      this.tipo = data.tipo;
+      this.saldo = data.saldo.toFixed(2);
+      this.dono = data.dono;
+    });
+  }
 }
