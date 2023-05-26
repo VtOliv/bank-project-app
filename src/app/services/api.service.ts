@@ -87,4 +87,11 @@ export class ApiService {
     );
     return url.pipe(map((data) => data));
   }
+
+  fecharConta(numconta: any) {
+    let url = this.http.put<any>(
+      `http://localhost:8097/fecharConta?numconta=${numconta}`,numconta
+    );
+    return url.pipe(map((data) => data));
+  }
 }

@@ -3,7 +3,7 @@ export class conta {
         public numConta: Number, 
         public saldo: Number,
         public dono: String,
-        public status: Boolean,
+        public status: String,
         public tipo: String
         ) {}
   }

@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   items!: MenuItem[];
   conta!: conta;
   tipo!: any;
-  test: any;
+  route: any;
   saldo!: any;
   dono!: any;
   value!: Number;
@@ -38,9 +38,9 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activeRoute.params.subscribe((d) => (this.test = d));
+    this.activeRoute.params.subscribe((d) => (this.route = d));
 
-    this.requisicoes.buscarConta(this.test.numconta).subscribe((data) => {
+    this.requisicoes.buscarConta(this.route.numconta).subscribe((data) => {
       this.conta = data;
       this.tipo = data.tipo;
       this.saldo = data.saldo.toFixed(2);
@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit {
       this.numconta = data.numConta
       sessionStorage.setItem('numconta', this.numconta);
 
-      console.log(this.test.numconta)
     });
 
     this.items = [
@@ -64,6 +63,7 @@ export class HomeComponent implements OnInit {
           {
             label: 'Fechar conta',
             icon: PrimeIcons.POWER_OFF,
+            command: () => this.fecharConta()
           },
           {
             label: 'Sair',
@@ -157,5 +157,23 @@ export class HomeComponent implements OnInit {
       this.saldo = data.saldo.toFixed(2);
       this.dono = data.dono;
     });
+  }
+
+  fecharConta(){
+    var numconta = sessionStorage.getItem('numconta');
+
+    this.requisicoes.fecharConta(numconta).subscribe(data => 
+      {
+        console.log(data);
+        
+        this.show("Conta encerrada com sucesso!", "Sucesso", "success")
+        setTimeout(() => {
+          (this.router.navigate(['/login'])), 400000;
+        });
+      },
+      err => {
+        console.log(err);
+        this.show(err.error.message,`Erro`, 'error')
+      })
   }
 }
