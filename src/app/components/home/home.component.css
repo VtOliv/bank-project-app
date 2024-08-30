@@ -67,11 +67,32 @@
 }
 
 ::ng-deep.p-card:hover {
-    background-color: rgb(197, 199, 198);
-    box-shadow: 10px 10px 2px 2px;
+	-webkit-animation: color-change-2x 1s linear alternate both;
+	animation: color-change-2x 1s linear alternate both;
+    /* background-color: rgb(197, 199, 198); */
+    box-shadow: 5px 5px 2px 2px grey;
 }
+
+
 
 ::ng-deep.p-card:active {
     background-color: rgb(155, 152, 152);
     box-shadow: 5px 5px 2px 2px;
 }
+
+@-webkit-keyframes color-change-2x {
+    0% {
+      background: #ffffff;
+    }
+    100% {
+      background: rgb(197, 199, 198);
+    }
+  }
+  @keyframes color-change-2x {
+    0% {
+      background: #ffffff;
+    }
+    100% {
+      background: rgb(197, 199, 198);
+    }
+  }
