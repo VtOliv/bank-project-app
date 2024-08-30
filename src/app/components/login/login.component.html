@@ -12,18 +12,24 @@
         <div class="formBox">
             <h2>Acesse sua conta</h2>
 
-            <span class="p-float-label">
+            <span class="p-float-label" style="margin-bottom: 10px;">
                 <p-inputNumber id="username" [(ngModel)]="value" [useGrouping]="false"> </p-inputNumber>
                 <label htmlFor="username">Digite sua conta</label>
             </span>
 
-            <p-button class="loginBtn" (click)="buscarConta()" label="Login"
+            <label htmlFor="password">Digite sua senha</label> 
+            <span class="p-float-label" style="margin-bottom: 10px;">
+                <p-inputOtp id="password" [(ngModel)]="pass" [integerOnly]="true" [mask]="true"/>
+            </span>
+
+
+            <p-button class="loginBtn" [raised]="true" (click)="logar()" label="Login"
                 styleClass="p-button-secondary"></p-button>
 
-            <span>Não possui conta ? <strong>Crie agora !</strong></span>
+            <span style="margin-top: 10px;">Não possui conta ? <strong>Crie agora !</strong></span>
             <p-button label="Clique aqui para criar"
                 styleClass="p-button-secondary p-button-text"
-                (click)="abrirCriar()"></p-button>
+                (click)="abrirCriar()" ></p-button>
         </div>
 
         <div class="dialogPgto flex justify-content-center">
@@ -32,17 +38,25 @@
                 height: '30%'}">
                 <p>Informe os campos a seguir para criar sua conta :</p>
                 <div class="criar">
-                    <span class="p-float-label">
+                    <span class="p-float-label" style="display: flex;flex-direction: column;">
+                        <span>Nome do Titular:</span>
                         <input pInputText id="username" [(ngModel)]="dono" />
-                        <label htmlFor="username">Dono</label>
                     </span>
 
-                    <p-selectButton [options]="stateOptions" [(ngModel)]="tipo" optionLabel="label" optionValue="value"></p-selectButton>
+                    <span class="p-float-label">
+                        <span>Digite sua senha:</span> 
+                        <p-inputOtp id="password" [(ngModel)]="pass" [integerOnly]="true" [mask]="true"/>
+                    </span>
+                    <span class="p-float-label">
+                        <span>Tipo de conta:</span> 
+                        <p-selectButton [options]="stateOptions" [(ngModel)]="tipo" optionLabel="label" optionValue="value"></p-selectButton>
+                    </span>
 
-                    <p-button label="Criar conta"
-                        styleClass="p-button-secondary" (click)="criarConta()"></p-button>
                 </div>
-
+                <div style="width: 100%;display:flex;justify-content: center;">
+                    <p-button label="Criar conta"
+                    styleClass="p-button-secondary" (click)="criarConta()"></p-button>
+                </div>
             </p-dialog>
         </div>
     </div>

@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   criar = false;
   tipo: any;
   dono: any;
+  pass: any;
   stateOptions: any[] = [
     { label: 'Conta Corrente', value: 2 },
     { label: 'Conta Poupança', value: 1 },
@@ -36,33 +37,36 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/home/' + id]);
   }
 
-  buscarConta() {
-    this.requisicoes.buscarConta(this.value).subscribe(
-      (data) => {
-        if (data.status === "Ativo") {
-          this.back = data;
-          this.abrirHome(data.numConta);
-        } else {
-          this.show(
-            'Essa conta está desativada',
-            `Erro`,
-            'error'
-          );
-        }
-      },
-      (err) => {
-        var exceptionMsg = err.error
+  logar() {
+    this.requisicoes.logar(this.value, this.pass).subscribe((data) => {
+
+      if (data) {
+        this.buscarConta()
+      } else {
         this.show(
-          exceptionMsg.message,
+          'Essa conta está desativada ou a senha está incorreta',
           `Erro`,
           'error'
         );
+      }
+    });
+  }
+
+  buscarConta() {
+    this.requisicoes.buscarConta(this.value).subscribe(
+      (data) => {
+        if (data.status === 'Ativo') {
+          this.back = data;
+          this.abrirHome(data.numConta);
+        } else {
+          this.show('Essa conta está desativada', `Erro`, 'error');
+        }
       }
     );
   }
 
   criarConta() {
-    this.requisicoes.criar(this.tipo, this.dono).subscribe((data) => {
+    this.requisicoes.criar(this.tipo, this.dono, this.pass).subscribe((data) => {
       this.back = data;
       this.abrirHome(data.numConta);
     });

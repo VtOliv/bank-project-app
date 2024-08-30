@@ -1,12 +1,7 @@
-
 <div class="card">
     <p-menubar [model]="items">
         <ng-template pTemplate="start">
-            <img
-                src="https://cdn-icons-png.flaticon.com/512/169/169850.png"
-                height="40"
-                class="mr-2"
-                />
+            <img src="https://cdn-icons-png.flaticon.com/512/169/169850.png" height="40" class="mr-2" />
         </ng-template>
         <ng-template pTemplate="end">
             <span>Bem vindo(a), {{ dono }}</span>
@@ -35,6 +30,8 @@
         </h1>
 
         <span> {{ tipo }}</span>
+        <p>Número da conta: {{ numconta }}</p>
+    
     </p-card>
 </div>
 
@@ -43,14 +40,11 @@
     <p-dialog header="Saque" [modal]="true" [(visible)]="saque" [style]="{width: '60%' ,
         height: '30%'}">
         <span class="p-inputgroup p-float-label">
-            <p-inputNumber class="saque" inputId="saque" mode="decimal"
-                [maxFractionDigits]="2" mode="currency" currency="BRL"
-                locale="pt-BR"
-                [(ngModel)]="value"> </p-inputNumber>
+            <p-inputNumber class="saque" inputId="saque" mode="decimal" [maxFractionDigits]="2" mode="currency"
+                currency="BRL" locale="pt-BR" [(ngModel)]="value"> </p-inputNumber>
             <label htmlFor="saque">Digite o valor do saque</label>
 
-            <button pButton label="Efetuar saque"
-                styleClass="p-button-secondary" (click)="sacar()"></button>
+            <button pButton label="Efetuar saque" styleClass="p-button-secondary" (click)="sacar()"></button>
         </span>
     </p-dialog>
 </div>
@@ -60,14 +54,11 @@
     <p-dialog header="Deposito" [modal]="true" [(visible)]="deposito" [style]="{width: '60%' ,
         height: '30%'}">
         <span class="p-inputgroup p-float-label">
-            <p-inputNumber class="deposito" inputId="deposito" mode="decimal"
-                [maxFractionDigits]="2" mode="currency" currency="BRL"
-                locale="pt-BR"
-                [(ngModel)]="value"> </p-inputNumber>
+            <p-inputNumber class="deposito" inputId="deposito" mode="decimal" [maxFractionDigits]="2" mode="currency"
+                currency="BRL" locale="pt-BR" [(ngModel)]="value"> </p-inputNumber>
             <label htmlFor="deposito">Digite o valor do depósito</label>
 
-            <button pButton label="Efetuar depósito"
-                styleClass="p-button-secondary" (click)="depositar()"></button>
+            <button pButton label="Efetuar depósito" styleClass="p-button-secondary" (click)="depositar()"></button>
         </span>
     </p-dialog>
 </div>
@@ -76,14 +67,11 @@
     <p-dialog header="Pagamentos" [modal]="true" [(visible)]="pgto" [style]="{width: '60%' ,
         height: '30%'}">
         <span class="p-inputgroup p-float-label">
-            <p-inputNumber class="pgto" inputId="pgto" mode="decimal"
-                [maxFractionDigits]="2" mode="currency" currency="BRL"
-                locale="pt-BR"
-                [(ngModel)]="value"> </p-inputNumber>
+            <p-inputNumber class="pgto" inputId="pgto" mode="decimal" [maxFractionDigits]="2" mode="currency"
+                currency="BRL" locale="pt-BR" [(ngModel)]="value"> </p-inputNumber>
             <label htmlFor="pgto">Digite o valor do pagamento</label>
 
-            <button pButton label="Efetuar pagamento"
-                styleClass="p-button-secondary" (click)="pagarConta()"></button>
+            <button pButton label="Efetuar pagamento" styleClass="p-button-secondary" (click)="pagarConta()"></button>
         </span>
     </p-dialog>
 </div>
@@ -102,13 +90,11 @@
                 <div class="radios">
                     <div class="optGroup">
                         <div class="opts">
-                            <p-radioButton name="cp" value=1
-                                [(ngModel)]="altTipo" inputId="cp"></p-radioButton>
+                            <p-radioButton name="cp" value=1 [(ngModel)]="altTipo" inputId="cp"></p-radioButton>
                             <label for="cp" class="ml-4">Conta Poupança</label>
                         </div>
                         <div class="opts">
-                            <p-radioButton name="cc" value=2
-                                [(ngModel)]="altTipo" inputId="cc"></p-radioButton>
+                            <p-radioButton name="cc" value=2 [(ngModel)]="altTipo" inputId="cc"></p-radioButton>
                             <label for="cc" class="ml-4">Conta Corrente</label>
                         </div>
 
@@ -118,8 +104,8 @@
                 </div>
             </p-tabPanel>
             <div class="mods">
-                <button pButton label="Efetuar alteração"
-                    styleClass="p-button-secondary" (click)="alterarDados()"></button>
+                <button pButton label="Efetuar alteração" styleClass="p-button-secondary"
+                    (click)="alterarDados()"></button>
             </div>
 
         </p-tabView>

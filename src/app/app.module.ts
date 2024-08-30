@@ -23,6 +23,8 @@ import { RippleModule } from 'primeng/ripple';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ExtratoComponent } from './components/extrato/extrato.component';
 import { TableModule } from 'primeng/table';
+import { InputOtpModule } from 'primeng/inputotp';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { TableModule } from 'primeng/table';
     TabViewModule,
     RippleModule,
     SelectButtonModule,
-    TableModule
+    TableModule,
+    InputOtpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

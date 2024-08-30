@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { conta } from '../models/conta';
 import { formAlteracao } from '../models/formAlteracao';
 import { PageResponse } from '../models/PageResponse';
+import { formLogin } from '../models/formLogin';
 
 @Injectable({
   providedIn: 'root',
@@ -65,10 +66,11 @@ export class ApiService {
     return url.pipe(map((data) => data));
   }
 
-  criar(tipo: any, dono: any) {
+  criar(tipo: any, dono: any, senha: any) {
     var form = new formAlteracao();
     form.tipo = tipo;
     form.dono = dono;
+    form.senha = senha
 
     let url = this.http.post<conta>(`http://localhost:8097/criar`, form);
     return url.pipe(map((data) => data));
@@ -94,4 +96,15 @@ export class ApiService {
     );
     return url.pipe(map((data) => data));
   }
+
+    logar(numconta: Number, senha: any){
+      var form = new formLogin();
+      form.numConta = numconta
+      form.senha = senha
+
+      let url = this.http.post<any>(
+        `http://localhost:8097/logar`,form
+      );
+      return url.pipe(map((data) => data));
+    }
 }
