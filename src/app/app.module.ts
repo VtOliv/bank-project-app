@@ -34,8 +34,8 @@ import { InputOtpModule } from 'primeng/inputotp';
     ExtratoComponent
   ],
   imports: [
-    BrowserModule,
     BrowserAnimationsModule,
+    BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,

@@ -6,6 +6,8 @@
     display: flex;
     justify-content: flex-end;
     padding: 10px;
+    background: linear-gradient(#1c0161,#64a7fa);
+    height: 100%;
 }
 
 .buttons {
@@ -85,7 +87,7 @@
       background: #ffffff;
     }
     100% {
-      background: rgb(197, 199, 198);
+      background: #e0ffff;
     }
   }
   @keyframes color-change-2x {
@@ -93,6 +95,6 @@
       background: #ffffff;
     }
     100% {
-      background: rgb(197, 199, 198);
+      background: #e0ffff;
     }
   }
