@@ -21,7 +21,7 @@ export class ExtratoComponent implements OnInit {
     { label: 'Saque', value: 'saque' },
     { label: 'Depósito', value: 'deposito' },
     { label: 'Pagamentos', value: 'pgto' },
-    { label: 'Remover Filtro', value: 'remover' },
+    { label: 'Todas as transações', value: 'remover' },
   ];
 
   constructor(
@@ -31,8 +31,6 @@ export class ExtratoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.activeRoute.params.subscribe((d) => (this.test = d));
-
     this.numconta = sessionStorage.getItem('numconta');
 
     this.requisicoes.buscarConta(this.numconta).subscribe((data) => {
@@ -58,7 +56,7 @@ export class ExtratoComponent implements OnInit {
         icon: PrimeIcons.ALIGN_JUSTIFY,
         items: [
           {
-            label: 'Fechar conta',
+            label: 'Encerrar conta',
             icon: PrimeIcons.POWER_OFF,
           },
           {

@@ -1,62 +1,57 @@
-<div class="card">
-    <p-menubar [model]="items">
-        <ng-template pTemplate="start">
-            <img
-                src="https://cdn-icons-png.flaticon.com/512/169/169850.png"
-                height="40"
-                class="mr-2"
-                />
-        </ng-template>
-        <ng-template pTemplate="end">
-            <span>Bem vindo(a), {{ dono }}</span>
-        </ng-template>
-    </p-menubar>
-</div>
+<div class="screen">
 
-<div class="table">
-    <div class="filtro">
-        <p>Escolha uma operação abaixo para filtrar o extrato :</p>
-        <p-selectButton (click)="filtrarExtrato()" [options]="ops" [(ngModel)]="filtro" optionLabel="label" optionValue="value"></p-selectButton>
-    </div>
-    <p-table
-        [value]="registros"
-        [paginator]="true"
-        [rows]="5"
-        [showCurrentPageReport]="true"
-        [tableStyle]="{ 'min-width': '50rem' }"
-        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords}
-        registros"
-        [rowsPerPageOptions]="[10, 25, 50]">
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width:25%">Data da Transação</th>
-                <th style="width:25%">Operação</th>
-                <th style="width:25%">Movimentação</th>
-                <th style="width:25%">Saldo Final</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-regs>
-            <tr>
-                <td>{{ regs.data }}</td>
-                <td>
-                    <div [ngClass]="{'saque': regs.operacao === 'saque',
+    <div class="content">
+
+        <div class="card">
+            <p-menubar [model]="items">
+                <ng-template pTemplate="start">
+                    <img src="https://cdn-icons-png.flaticon.com/512/169/169850.png" height="40" class="mr-2" />
+                </ng-template>
+                <ng-template pTemplate="end">
+                    <span>Bem vindo(a), {{ dono }}</span>
+                </ng-template>
+            </p-menubar>
+        </div>
+
+        <div class="table">
+            <div class="filtro">
+                <p>Escolha uma operação abaixo para filtrar o extrato :</p>
+                <p-selectButton (click)="filtrarExtrato()" [options]="ops" [(ngModel)]="filtro" optionLabel="label"
+                    optionValue="value"></p-selectButton>
+            </div>
+            <p-table [value]="registros" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+                [tableStyle]="{ 'min-width': '50rem' }" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords}
+            registros" [rowsPerPageOptions]="[5, 10, 25, 50]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width:25%">Data da Transação</th>
+                        <th style="width:25%">Operação</th>
+                        <th style="width:25%">Movimentação</th>
+                        <th style="width:25%">Saldo Final</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-regs>
+                    <tr>
+                        <td>{{ regs.data }}</td>
+                        <td>
+                            <div [ngClass]="{'saque': regs.operacao === 'saque',
                         'deposito': regs.operacao === 'deposito','pgto':
                         regs.operacao === 'pgto'}">
-                        {{ regs.operacao }}
-                    </div>
+                                {{ regs.operacao }}
+                            </div>
 
-                </td>
-                <td>R$ {{ regs.movimentacao.toFixed(2) }}</td>
-                <td>R$ {{ regs.saldo.toFixed(2) }}</td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="paginatorleft">
-            <p-button type="button" icon="pi pi-plus"
-                styleClass="p-button-text"></p-button>
-        </ng-template>
-        <ng-template pTemplate="paginatorright">
-            <p-button type="button" icon="pi pi-cloud"
-                styleClass="p-button-text"></p-button>
-        </ng-template>
-    </p-table>
+                        </td>
+                        <td>R$ {{ regs.movimentacao.toFixed(2) }}</td>
+                        <td>R$ {{ regs.saldo.toFixed(2) }}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="paginatorleft">
+                    <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+                </ng-template>
+                <ng-template pTemplate="paginatorright">
+                    <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
 </div>

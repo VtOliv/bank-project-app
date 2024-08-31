@@ -31,3 +31,16 @@
     flex-direction: column;
     align-items: center;
 }
+
+.screen{
+    color: white;
+    background: linear-gradient(#1c0161,#64a7fa);
+    height: 95vh;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
