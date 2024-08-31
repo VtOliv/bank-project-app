@@ -5,6 +5,7 @@ import { conta } from '../models/conta';
 import { formAlteracao } from '../models/formAlteracao';
 import { PageResponse } from '../models/PageResponse';
 import { formLogin } from '../models/formLogin';
+import { formTrocarSenha } from '../models/formTrocarSenha';
 
 @Injectable({
   providedIn: 'root',
@@ -104,6 +105,19 @@ export class ApiService {
 
       let url = this.http.post<any>(
         `http://localhost:8097/logar`,form
+      );
+      return url.pipe(map((data) => data));
+    }
+    
+    trocarSenha(numconta: Number, senhaNova: any, senhaAntiga?: any, isLogado?: Boolean){
+      var form = new formTrocarSenha();
+      form.numConta = numconta
+      form.senhaNova = senhaNova
+      form.senhaAntiga = senhaAntiga
+      form.isLogado = isLogado
+
+      let url = this.http.post<any>(
+        `http://localhost:8097/trocarSenha`,form
       );
       return url.pipe(map((data) => data));
     }

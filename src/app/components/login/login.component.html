@@ -25,17 +25,12 @@
 
             <p-button class="loginBtn" [raised]="true" (click)="logar()" label="Login"
                 styleClass="p-button-secondary"></p-button>
-
-            <span style="margin-top: 10px;">Não possui conta ? <strong>Crie agora !</strong></span>
-            <p-button label="Clique aqui para criar"
-                styleClass="p-button-secondary p-button-text"
-                (click)="abrirCriar()" ></p-button>
+            <span style="margin-top: 10px;">Esqueceu a senha ? <strong class="interactiveText" (click)="abrirPass()">Redefinir senha</strong></span>
+            <span style="margin-top: 10px;">Não possui conta ? <strong class="interactiveText" (click)="abrirCriar()">Criar conta</strong></span>
         </div>
 
         <div class="dialogPgto flex justify-content-center">
-            <p-dialog header="Pagamentos" [(visible)]="criar" [style]="{width:
-                '60%' ,
-                height: '30%'}">
+            <p-dialog header="Pagamentos" [(visible)]="criar" [style]="{width: '60%' , height: '30%'}">
                 <p>Informe os campos a seguir para criar sua conta :</p>
                 <div class="criar">
                     <span class="p-float-label" style="display: flex;flex-direction: column;">
@@ -56,6 +51,33 @@
                 <div style="width: 100%;display:flex;justify-content: center;">
                     <p-button label="Criar conta"
                     styleClass="p-button-secondary" (click)="criarConta()"></p-button>
+                </div>
+            </p-dialog>
+        </div>
+
+        <div class="dialogSenha flex justify-content-center">
+            <p-dialog header="Pagamentos" [(visible)]="passDialog" [style]="{width: '60%' , height: '30%'}">
+                <p>Troca de senha :</p>
+                <div class="criar">
+                    <span class="p-float-label" style="display: flex; flex-direction: column;">
+                        <span>Digite sua conta</span>
+                        <p-inputNumber id="numConta" [(ngModel)]="numConta" [useGrouping]="false"> </p-inputNumber>
+                    </span>
+
+                    <span class="p-float-label">
+                        <span>Digite sua senha antiga:</span> 
+                        <p-inputOtp id="password" [(ngModel)]="senhaAntiga" [integerOnly]="true" [mask]="true"/>
+                    </span>
+
+                    <span class="p-float-label">
+                        <span>Digite sua senha nova:</span> 
+                        <p-inputOtp id="password" [(ngModel)]="senhaNova" [integerOnly]="true" [mask]="true"/>
+                    </span>
+
+                </div>
+                <div style="width: 100%;display:flex;justify-content: center;">
+                    <p-button label="Trocar senha"
+                    styleClass="p-button-secondary" (click)="trocarSenha()"></p-button>
                 </div>
             </p-dialog>
         </div>

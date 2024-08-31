@@ -60,3 +60,19 @@ mat-form-field {
     margin: 10px;
     padding: 10px;
 }
+
+.interactiveText {
+    padding: 3px;
+}
+
+.interactiveText:hover {
+    color: #000000;
+    background-color: #eff0f0;
+    box-shadow: 2px 2px 2px 2px lightgray;
+    border-radius: 5px;
+}
+
+.interactiveText:active {
+    box-shadow: 1px 1px 1px 1px lightgray; 
+    transform: translateY(4px); 
+}

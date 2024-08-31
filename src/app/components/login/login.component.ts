@@ -17,11 +17,16 @@ export class LoginComponent implements OnInit {
   ) {}
 
   value: any;
+  numConta: any;
   back: any;
   criar = false;
+  passDialog = false
   tipo: any;
   dono: any;
   pass: any;
+
+  senhaAntiga: any;
+  senhaNova: any;
   stateOptions: any[] = [
     { label: 'Conta Corrente', value: 2 },
     { label: 'Conta Poupança', value: 1 },
@@ -31,6 +36,10 @@ export class LoginComponent implements OnInit {
 
   abrirCriar() {
     this.criar = true;
+  }
+
+  abrirPass() {
+    this.passDialog = true;
   }
 
   abrirHome(id: any) {
@@ -45,6 +54,25 @@ export class LoginComponent implements OnInit {
       } else {
         this.show(
           'Essa conta está desativada ou a senha está incorreta',
+          `Erro`,
+          'error'
+        );
+      }
+    });
+  }
+
+  trocarSenha() {
+    this.requisicoes.trocarSenha(this.numConta, this.senhaNova, this.senhaAntiga, false).subscribe((data) => {
+      if (data) {
+        this.show(
+          'Senha Alterada com sucesso',
+          `Sucesso`,
+          'success'
+        );
+        this.passDialog = false
+      } else {
+        this.show(
+          'Erro ao trocar a senha , tente novamente',
           `Erro`,
           'error'
         );
